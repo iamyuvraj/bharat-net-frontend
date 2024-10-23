@@ -25,7 +25,7 @@ const LoginPage = () => {
     <div
       className="relative flex items-center justify-end h-screen bg-cover bg-center"
       style={{
-        backgroundImage: `url('/bg-assets/login-bg.jpg')`,
+        backgroundImage: `url('/bg-assets/bg.jpg')`,
       }}
     >
       {/* overlay to darken the background image */}
@@ -35,7 +35,7 @@ const LoginPage = () => {
       <div className="relative z-10 bg-white bg-opacity-10 backdrop-filter backdrop-blur-md rounded-lg shadow-lg p-8 w-full max-w-md mr-20">
         <div className="flex justify-center mb-4">
           {/* logo */}
-          <img src="/other-assets/login-logo.png" alt="Bharat Net" className="h-20" />
+          <img src="/other-assets/bn-logo.png" alt="Bharat Net" className="h-20" />
         </div>
 
         <h2 className="text-center text-white text-3xl font-semibold mb-4">Log In</h2>

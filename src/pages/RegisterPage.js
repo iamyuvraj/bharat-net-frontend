@@ -1,12 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { createPopper } from "@popperjs/core";
 
 const Register = () => {
   const [showOtp, setShowOtp] = useState(false);
   const [otpValues, setOtpValues] = useState(Array(6).fill(""));
+  const [popoverVisible, setPopoverVisible] = useState(false); // Track popover visibility
+
+  const isValid = otpValues.every((otp) => otp.length === 1);
+
+  useEffect(() => {
+    const button = document.querySelector('[data-popover-target="popover-click"]');
+    const popover = document.getElementById("popover-click");
+    const arrow = popover.querySelector('[data-popper-arrow]');
+
+    if (button && popover && arrow) {
+      createPopper(button, popover, {
+        placement: "top",
+        modifiers: [{ name: "arrow", options: { element: arrow } }],
+      });
+    }
+  }, []);
+
+  // Function to toggle popover visibility
+  const togglePopover = (e) => {
+    e.stopPropagation(); // prevent checkbox toggle
+    setPopoverVisible((prev) => !prev);
+  };
 
   const handleRegister = (e) => {
     e.preventDefault();
-    // add logic to send OTP here
     setShowOtp(true); // show OTP input after registration
   };
 
@@ -14,13 +36,11 @@ const Register = () => {
     const newOtpValues = [...otpValues];
     newOtpValues[index] = value;
 
-    // focus next input automatically if current input is filled
     if (value.length === 1 && index < 5) {
       const nextInput = document.getElementById(`code-${index + 2}`);
       nextInput?.focus();
     }
 
-    // update state
     setOtpValues(newOtpValues);
   };
 
@@ -28,10 +48,10 @@ const Register = () => {
     <div
       className="relative flex items-center justify-end h-screen bg-cover bg-center"
       style={{
-        backgroundImage: `url('/bg-assets/login-bg.jpg')`,
+        backgroundImage: `url('/bg-assets/bg.jpg')`,
       }}
     >
-      {/* overlay to darken the background image */}
+      {/* Overlay to darken the background image */}
       <div className="absolute inset-0 bg-black opacity-60"></div>
 
       {/* Register Form Container */}
@@ -39,17 +59,17 @@ const Register = () => {
         <div className="flex justify-center mb-4">
           {/* Logo */}
           <img
-            src="/other-assets/login-logo.png"
+            src="/other-assets/bn-logo.png"
             alt="Bharat Net"
             className="h-20"
           />
         </div>
 
         <h2 className="text-center text-white text-3xl font-semibold mb-4">
-          {showOtp ? "Enter OTP" : "Register"}
+          {showOtp ? "Verify Mobile Number" : "User Registration"}
         </h2>
 
-        {/* Conditional Rendering of Registration Form for OTP Input */}
+        {/* Conditional Rendering of Registration Form or OTP Input */}
         {!showOtp ? (
           <form onSubmit={handleRegister}>
             <div className="flex mb-4">
@@ -82,6 +102,7 @@ const Register = () => {
                 required
               />
             </div>
+
             <div className="mb-4">
               <label className="block text-white mb-2">Mobile Number</label>
               <input
@@ -89,18 +110,64 @@ const Register = () => {
                 placeholder="Enter 10-digit Mobile No."
                 className="w-full p-3 rounded-md mb-4 text-gray-900"
                 required
-                maxLength={10} // restrict the input to 10 characters
+                maxLength={10}
               />
               <p className="mt-2 mb-4 text-sm text-gray-400">
                 We will send you an SMS with a verification code.
               </p>
             </div>
-            <div className="flex items-center mb-4">
-              <input type="checkbox" id="terms" className="mr-2" required />
-              <label htmlFor="terms" className="text-white">
-                Agree to Terms and Conditions
-              </label>
+
+            <div className="flex flex-col mb-4">
+              <div className="flex items-center mb-2">
+                {/* Terms and Conditions Popover Link */}
+                <label htmlFor="terms" className="text-white">
+                  Read{" "}
+                  <span
+                    data-popover-target="popover-click"
+                    className="font-bold underline cursor-pointer"
+                    onClick={togglePopover} // Toggle popover on click
+                  >
+                    Terms and Conditions
+                  </span>
+                </label>
+              </div>
+
+              {/* Checkbox after the terms and conditions */}
+              <div className="flex items-center">
+                <input type="checkbox" id="terms" className="mr-2" required />
+                <label htmlFor="terms" className="text-white">
+                  I have read the Terms and Conditions
+                </label>
+              </div>
             </div>
+
+            {/* Popover Content */}
+            <div
+              data-popover
+              id="popover-click"
+              role="tooltip"
+              className={`absolute z-10 inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm ${
+                popoverVisible ? "opacity-100" : "opacity-0"
+              }`}
+              style={{ visibility: popoverVisible ? "visible" : "hidden" }}
+            >
+              <div className="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+                <h3 className="font-semibold text-gray-900 dark:text-white">
+                  Terms and Conditions
+                </h3>
+              </div>
+              <div className="px-3 py-2">
+                <p>
+                  By using our services, you agree to comply with and be bound
+                  by these terms and conditions. If you do not agree with any
+                  part of these terms, please refrain from using our services.
+                  You are responsible for using our services in a lawful manner
+                  and in accordance with these terms.
+                </p>
+              </div>
+              <div data-popper-arrow></div>
+            </div>
+
             <button
               type="submit"
               className="w-full bg-blue-600 text-white py-3 rounded-md transition hover:bg-blue-700"
@@ -130,6 +197,36 @@ const Register = () => {
             <p className="mt-2 text-sm text-gray-400 text-center">
               Please Enter the 6-digit OTP.
             </p>
+
+            {/* Verify OTP Button */}
+            <div className="mt-4 text-center">
+              <button
+                type="submit"
+                className={`w-full bg-blue-600 text-white py-3 rounded-md transition ${
+                  isValid
+                    ? "hover:bg-blue-700"
+                    : "opacity-50 cursor-not-allowed"
+                } flex justify-center items-center`}
+                disabled={!isValid}
+              >
+                Verify OTP
+                <svg
+                  className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         )}
       </div>
