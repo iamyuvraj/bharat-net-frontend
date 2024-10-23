@@ -1,68 +1,73 @@
 import React, { useState } from 'react';
-import { TextField, Button, Typography, Paper, Container } from '@mui/material';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [isValid, setIsValid] = useState(false);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    console.log(`logging in with email: ${email}, password: ${password}`);
-    // Add your login logic here
+  // handle input change
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+
+    // only allow numbers
+    if (/^[0-9]*$/.test(value)) {
+      setMobile(value);
+    }
+
+    // check digits
+    if (value.length >= 10) {
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
   };
 
   return (
-    <Container
-      component="main"
-      maxWidth="xs"
-      className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600"
+    <div
+      className="relative flex items-center justify-end h-screen bg-cover bg-center"
+      style={{
+        backgroundImage: `url('/bg-assets/login-bg.jpg')`,
+      }}
     >
-      <Paper elevation={3} className="p-6 rounded-lg w-full">
-        <Typography variant="h5" component="h1" className="text-center mb-4">
-          Welcome Back!
-        </Typography>
-        <form onSubmit={handleLogin} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="E-Mail"
-            autoComplete="email"
-            autoFocus
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="mb-4"
+      {/* overlay to darken the background image */}
+      <div className="absolute inset-0 bg-black opacity-60"></div>
+
+      {/* Login Form Container */}
+      <div className="relative z-10 bg-white bg-opacity-10 backdrop-filter backdrop-blur-md rounded-lg shadow-lg p-8 w-full max-w-md mr-20">
+        <div className="flex justify-center mb-4">
+          {/* logo */}
+          <img src="/other-assets/login-logo.png" alt="Bharat Net" className="h-20" />
+        </div>
+
+        <h2 className="text-center text-white text-3xl font-semibold mb-4">Log In</h2>
+
+        {/* Login Form */}
+        <form>
+          <label htmlFor="mobile" className="block text-white mb-2">
+            Registered Mobile Number
+          </label>
+          <input
+            type="text"
+            id="mobile"
+            placeholder="Enter 10-digit Mobile No."
+            className="w-full p-3 rounded-md mb-4 text-gray-900"
+            value={mobile}
+            onChange={handleInputChange}
+            maxLength={10}  // restrict the input to 10 characters
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="password"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="mb-4"
-          />
-          <Button
+          <p id="helper-text-explanation" class="mt-2 mb-4 text-sm text-gray-400 dark:text-gray-400">We will send you an SMS with a verification code.</p>
+
+          <button
             type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className="mt-2"
+            className={`w-full bg-blue-600 text-white py-3 rounded-md transition ${
+              isValid ? 'hover:bg-blue-700' : 'opacity-50 cursor-not-allowed'
+            }`}
+            disabled={!isValid}
           >
-            Log In
-          </Button>
+            Send OTP
+          </button>
         </form>
-        <p className="mt-4 text-center text-gray-600">
-          Don't have an account? <a href="/register" className="text-blue-600 hover:underline">Register</a>
-        </p>
-      </Paper>
-    </Container>
+      </div>
+    </div>
   );
 };
 
