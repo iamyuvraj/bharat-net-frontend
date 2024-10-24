@@ -6,8 +6,8 @@ const Carousel = () => {
     '/other-assets/carousel-1.jpg',
     '/other-assets/login-card-image.jpg',
     '/your-image-path/carousel-3.jpg',
-    '/your-image-path/carousel-4.jpg',
-    '/your-image-path/carousel-5.jpg'
+    // additional '/your-image-path/carousel-4.jpg',
+    // additional '/your-image-path/carousel-5.jpg'
   ];
 
   const nextSlide = () => {
@@ -18,41 +18,50 @@ const Carousel = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
 
-  // Auto slide every 3 seconds
+  // auto slide every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 3000); // Change slide every 3 seconds
+    }, 3000); // change slide every 3 seconds
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="relative w-full" data-carousel="slide">
-      {/* Carousel wrapper */}
-      <div className="relative h-60 overflow-hidden rounded-lg md:h-100">
-        {images.map((src, index) => (
-          <div
-            key={index}
-            className={`absolute block w-full transition-opacity duration-700 ease-in-out ${currentIndex === index ? 'opacity-100' : 'opacity-0'}`}
-            aria-hidden={currentIndex !== index}
-          >
-            <img
-              src={src}
-              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              alt={`Slide ${index + 1}`}
-            />
-          </div>
-        ))}
+      {/* carousel wrapper */}
+      <div className="relative w-full" data-carousel="slide">
+        {" "}
+        {/* adjust `mt-16` based on navbar height */}
+        <div className="relative h-[700px] overflow-hidden md:h-[600px]">
+          {images.map((src, index) => (
+            <div
+              key={index}
+              className={`absolute block w-full h-full transition-opacity duration-700 ease-in-out ${
+                currentIndex === index ? "opacity-100" : "opacity-0"
+              }`}
+              aria-hidden={currentIndex !== index}
+            >
+              <img
+                src={src}
+                className="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                alt={`Slide ${index + 1}`}
+              />
+            </div>
+          ))}
+        </div>
+        {/* other carousel elements */}
       </div>
 
-      {/* Slider indicators */}
+      {/* slider indicators */}
       <div className="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
         {images.map((_, index) => (
           <button
             key={index}
             type="button"
-            className={`w-3 h-3 rounded-full ${currentIndex === index ? 'bg-blue-600' : 'bg-gray-300'}`}
+            className={`w-3 h-3 rounded-full ${
+              currentIndex === index ? "bg-blue-600" : "bg-gray-300"
+            }`}
             aria-current={currentIndex === index}
             aria-label={`Slide ${index + 1}`}
             onClick={() => setCurrentIndex(index)}
@@ -60,7 +69,7 @@ const Carousel = () => {
         ))}
       </div>
 
-      {/* Slider controls */}
+      {/* slider controls */}
       <button
         type="button"
         className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
