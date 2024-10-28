@@ -4,14 +4,16 @@ import { createPopper } from "@popperjs/core";
 const Register = () => {
   const [showOtp, setShowOtp] = useState(false);
   const [otpValues, setOtpValues] = useState(Array(6).fill(""));
-  const [popoverVisible, setPopoverVisible] = useState(false); // Track popover visibility
+  const [popoverVisible, setPopoverVisible] = useState(false); // track popover visibility
 
   const isValid = otpValues.every((otp) => otp.length === 1);
 
   useEffect(() => {
-    const button = document.querySelector('[data-popover-target="popover-click"]');
+    const button = document.querySelector(
+      '[data-popover-target="popover-click"]'
+    );
     const popover = document.getElementById("popover-click");
-    const arrow = popover.querySelector('[data-popper-arrow]');
+    const arrow = popover.querySelector("[data-popper-arrow]");
 
     if (button && popover && arrow) {
       createPopper(button, popover, {
@@ -21,7 +23,7 @@ const Register = () => {
     }
   }, []);
 
-  // Function to toggle popover visibility
+  // function to toggle popover visibility
   const togglePopover = (e) => {
     e.stopPropagation(); // prevent checkbox toggle
     setPopoverVisible((prev) => !prev);
@@ -51,13 +53,13 @@ const Register = () => {
         backgroundImage: `url('/bg-assets/bg.jpg')`,
       }}
     >
-      {/* Overlay to darken the background image */}
+      {/* overlay to darken the background image */}
       <div className="absolute inset-0 bg-black opacity-60"></div>
 
-      {/* Register Form Container */}
+      {/* register form container */}
       <div className="relative z-10 bg-white bg-opacity-10 backdrop-filter backdrop-blur-md rounded-lg shadow-lg p-8 w-full max-w-md mr-20">
         <div className="flex justify-center mb-4">
-          {/* Logo */}
+          {/* logo */}
           <img
             src="/other-assets/bn-logo.png"
             alt="Bharat Net"
@@ -69,7 +71,7 @@ const Register = () => {
           {showOtp ? "Verify Mobile Number" : "User Registration"}
         </h2>
 
-        {/* Conditional Rendering of Registration Form or OTP Input */}
+        {/* conditional rendering of registration form or OTP input */}
         {!showOtp ? (
           <form onSubmit={handleRegister}>
             <div className="flex mb-4">
@@ -106,11 +108,17 @@ const Register = () => {
             <div className="mb-4">
               <label className="block text-white mb-2">Mobile Number</label>
               <input
-                type="tel"
+                type="text"
+                id="mobileNumber"
                 placeholder="Enter 10-digit Mobile No."
                 className="w-full p-3 rounded-md mb-4 text-gray-900"
                 required
+                inputMode="numeric"
                 maxLength={10}
+                pattern="^[0-9]{10}$"
+                onInput={(e) => {
+                  e.target.value = e.target.value.replace(/[^0-9]/g, "");
+                }}
               />
               <p className="mt-2 mb-4 text-sm text-gray-400">
                 We will send you an SMS with a verification code.
@@ -119,20 +127,20 @@ const Register = () => {
 
             <div className="flex flex-col mb-4">
               <div className="flex items-center mb-2">
-                {/* Terms and Conditions Popover Link */}
+                {/* terms and conditions popover link */}
                 <label htmlFor="terms" className="text-white">
                   Read{" "}
                   <span
                     data-popover-target="popover-click"
                     className="font-bold underline cursor-pointer"
-                    onClick={togglePopover} // Toggle popover on click
+                    onClick={togglePopover} // toggle popover on click
                   >
                     Terms and Conditions
                   </span>
                 </label>
               </div>
 
-              {/* Checkbox after the terms and conditions */}
+              {/* checkbox after the terms and conditions */}
               <div className="flex items-center">
                 <input type="checkbox" id="terms" className="mr-2" required />
                 <label htmlFor="terms" className="text-white">
@@ -141,7 +149,7 @@ const Register = () => {
               </div>
             </div>
 
-            {/* Popover Content */}
+            {/* popover content */}
             <div
               data-popover
               id="popover-click"
@@ -198,7 +206,7 @@ const Register = () => {
               Please Enter the 6-digit OTP.
             </p>
 
-            {/* Verify OTP Button */}
+            {/* verify OTP button */}
             <div className="mt-4 text-center">
               <button
                 type="submit"

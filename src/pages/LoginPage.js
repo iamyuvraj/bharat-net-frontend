@@ -1,34 +1,34 @@
 import React, { useState } from 'react';
 
 const Login = () => {
-  const [mobile, setMobile] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
   const [isValid, setIsValid] = useState(false);
 
-  // Handle input change
+  // handle input change
   const handleInputChange = (e) => {
     const value = e.target.value;
 
-    // Only allow numbers
+    // only allow numbers
     if (/^[0-9]*$/.test(value)) {
-      setMobile(value);
+      setMobileNumber(value);
     }
 
-    // Check digits
-    setIsValid(value.length >= 10);
+    // check digits
+    setIsValid(value.length === 10);
   };
 
   return (
     <div
       className="relative flex items-center justify-end h-screen bg-cover bg-center"
-      style={{ backgroundImage: `url('/bg-assets/bg.jpg')` }}
+      style={{ backgroundImage: "url('/bg-assets/bg.jpg')" }}
     >
-      {/* Overlay to darken the background image */}
+      {/* overlay to darken the background image */}
       <div className="absolute inset-0 bg-black opacity-60"></div>
 
-      {/* Login Form Container */}
+      {/* login form container */}
       <div className="relative z-10 bg-white bg-opacity-10 backdrop-filter backdrop-blur-md rounded-lg shadow-lg p-8 w-full max-w-md mr-20">
         <div className="flex justify-center mb-4">
-          {/* Logo */}
+          {/* logo */}
           <img
             src="/other-assets/bn-logo.png"
             alt="Bharat Net"
@@ -40,19 +40,19 @@ const Login = () => {
           Log In
         </h2>
 
-        {/* Login Form */}
+        {/* login form */}
         <form>
-          <label htmlFor="mobile" className="block text-white mb-2">
+          <label htmlFor="mobileNumber" className="block text-white mb-2">
             Registered Mobile Number
           </label>
           <input
             type="text"
-            id="mobile"
+            id="mobileNumber"
             placeholder="Enter 10-digit Mobile No."
             className="w-full p-3 rounded-md mb-4 text-gray-900"
-            value={mobile}
+            value={mobileNumber}
             onChange={handleInputChange}
-            maxLength={10} // Restrict the input to 10 characters
+            maxLength={10} // restrict the input to 10 characters
           />
           <p
             id="helper-text-explanation"
