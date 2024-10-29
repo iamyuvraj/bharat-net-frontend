@@ -5,9 +5,9 @@ const NewConnection = () => {
     fullName: "",
     address1: "",
     address2: "",
-    locality: "",
-    district: "",
     state: "",
+    district: "",
+    locality: "",
     PINCode: "",
   });
 
@@ -108,16 +108,15 @@ const NewConnection = () => {
           </div>
 
           <div>
-            <label htmlFor="locality" className="block text-white mb-2">
-              Locality
+            <label htmlFor="state" className="block text-white mb-2">
+              State
             </label>
             <input
               type="text"
-              id="locality"
-              placeholder="Enter Locality"
+              id="state"
+              placeholder="Enter State"
               className="w-full p-3 rounded-md text-gray-900"
-              required
-              value={form.locality}
+              value={form.state}
               onChange={handleInputChange}
             />
           </div>
@@ -137,15 +136,16 @@ const NewConnection = () => {
           </div>
 
           <div>
-            <label htmlFor="state" className="block text-white mb-2">
-              State
+            <label htmlFor="locality" className="block text-white mb-2">
+              Locality
             </label>
             <input
               type="text"
-              id="state"
-              placeholder="Enter State"
+              id="locality"
+              placeholder="Enter Locality"
               className="w-full p-3 rounded-md text-gray-900"
-              value={form.state}
+              required
+              value={form.locality}
               onChange={handleInputChange}
             />
           </div>

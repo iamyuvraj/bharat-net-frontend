@@ -1,8 +1,44 @@
-import React from 'react';
-import Carousel from './Carousel';
-import WhyBharatNet from './WhyBharatNet';
+import React, { useState } from "react";
+import Carousel from "./Carousel";
+import WhyBharatNet from "./WhyBharatNet";
+import RouterIcon from '@mui/icons-material/Router';
+import LoginIcon from '@mui/icons-material/Login';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import Modal from "./Modal";
 
 const Landing = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [form, setForm] = useState({
+    fullName: "",
+    address1: "",
+    address2: "",
+    state: "",
+    district: "",
+    locality: "",
+    PINCode: "",
+  });
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setForm((prevForm) => ({
+      ...prevForm,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    console.log("Form submitted:", form);
+    // Optionally close the modal after submission
+    toggleModal();
+  };
+
   return (
     <div>
       {/* main Navbar */}
@@ -21,25 +57,174 @@ const Landing = () => {
               Bharat Net
             </span>
           </a>
+
           <div className="flex items-center space-x-4 rtl:space-x-reverse">
-            <a href="tel:5541251234">
-              <button className="text-sm bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600">
-                Contact Support
+            <button
+              type="button"
+              className="px-3 py-2 text-sm font-medium text-white bg-teal-600 hover:bg-green-600 focus:ring-1 focus:outline-none focus:ring-green-300 rounded-lg transition duration-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-700 ml-4 flex items-center space-x-2"
+              onClick={toggleModal} // Open the modal
+            >
+              <RouterIcon className="w-5 h-5 text-white" />
+              <span>Apply for New Connection</span>
+            </button>
+
+            <a href="/login">
+              <button className="flex items-center space-x-2 text-sm bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-500 transition duration-300">
+                <LoginIcon className="w-5 h-5 text-white" />
+                <span>Log In</span>
               </button>
             </a>
-            <a href="#">
-              <button className="text-sm bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">
-                Log In
+            <a href="/register">
+              <button className="flex items-center space-x-2 text-sm bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-400">
+                <AppRegistrationIcon className="w-5 h-5 text-white" />
+                <span>Register</span>
               </button>
             </a>
+
             <a href="#">
-              <button className="text-sm bg-green-500 text-white px-4 py-2 rounded hover:bg-green-400">
-                Register
+              <button className="flex items-center space-x-2 text-sm bg-gray-700 text-white px-3 py-2 rounded-lg hover:bg-gray-600">
+                <SupportAgentIcon className="w-5 h-5 text-white" />
+                <span>Contact Support</span>
               </button>
             </a>
           </div>
         </div>
       </nav>
+
+      {/* Modal for New Connection Form */}
+      <Modal isOpen={isModalOpen} onClose={toggleModal}>
+        <div className="bg-gray-700 p-6 rounded-lg shadow-lg"> {/* edit the background and blur effect later - cover whole page blur */}
+          <div className="flex justify-center mb-6">
+            <img
+              src="/other-assets/bn-logo.png"
+              alt="Bharat Net"
+              className="h-20"
+            />
+          </div>
+          <h2 className="text-center text-white text-3xl font-semibold mb-6">
+            Apply for New Connection
+          </h2>
+
+          {/* Apply Form */}
+          <form
+            className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4"
+            onSubmit={handleSubmit}
+          >
+            <div className="col-span-2">
+              <label htmlFor="fullName" className="block text-white mb-2">
+                Applicant's Full Name
+              </label>
+              <input
+                type="text"
+                id="fullName"
+                placeholder="Enter Full Name"
+                className="w-full p-3 rounded-md text-gray-900"
+                required
+                value={form.fullName}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="col-span-2">
+              <label htmlFor="address1" className="block text-white mb-2">
+                Address Line 1
+              </label>
+              <input
+                type="text"
+                id="address1"
+                placeholder="Enter Street Address"
+                className="w-full p-3 rounded-md text-gray-900"
+                required
+                value={form.address1}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="col-span-2">
+              <label htmlFor="address2" className="block text-white mb-2">
+                Address Line 2 (Optional)
+              </label>
+              <input
+                type="text"
+                id="address2"
+                placeholder="Enter Landmark"
+                className="w-full p-3 rounded-md text-gray-900"
+                value={form.address2}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="state" className="block text-white mb-2">
+                State
+              </label>
+              <input
+                type="text"
+                id="state"
+                placeholder="Enter State"
+                className="w-full p-3 rounded-md text-gray-900"
+                value={form.state}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="district" className="block text-white mb-2">
+                District
+              </label>
+              <input
+                type="text"
+                id="district"
+                placeholder="Enter District"
+                className="w-full p-3 rounded-md text-gray-900"
+                value={form.district}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="locality" className="block text-white mb-2">
+                Locality
+              </label>
+              <input
+                type="text"
+                id="locality"
+                placeholder="Enter Locality"
+                className="w-full p-3 rounded-md text-gray-900"
+                required
+                value={form.locality}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="PINCode" className="block text-white mb-2">
+                PIN Code
+              </label>
+              <input
+                type="text"
+                id="PINCode"
+                placeholder="Enter PIN Code"
+                className="w-full p-3 rounded-md text-gray-900"
+                required
+                value={form.PINCode}
+                onChange={handleInputChange}
+                maxLength={6}
+                pattern="\d{6}"
+              />
+            </div>
+
+            <div className="col-span-2 mt-4">
+              <button
+                type="submit"
+                className="w-full bg-blue-600 text-white py-3 rounded-md transition hover:bg-blue-700"
+              >
+                Apply Now
+              </button>
+            </div>
+          </form>
+        </div>
+      </Modal>
 
       {/* carousel */}
       <Carousel />
@@ -322,7 +507,7 @@ const Landing = () => {
           <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
           <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2024{" "}
-            <a href="https://flowbite.com/" class="hover:underline">
+            <a href="https://example.com/" class="hover:underline">
               Bharat Net™
             </a>
             . All Rights Reserved.
