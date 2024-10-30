@@ -7,7 +7,7 @@ import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/bharat-net-frontend">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/register" element={<RegisterPage />} />
