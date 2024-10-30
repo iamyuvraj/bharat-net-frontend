@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const images = [
-    '/other-assets/carousel-assets/slide-one.jpg',
-    '/other-assets/carousel-assets/slide-two.jpg',
-    '/other-assets/carousel-assets/slide-three.jpg',
+    `${process.env.PUBLIC_URL}/other-assets/carousel-assets/slide-one.jpg`,
+    `${process.env.PUBLIC_URL}/other-assets/carousel-assets/slide-two.jpg`,
+    `${process.env.PUBLIC_URL}/other-assets/carousel-assets/slide-three.jpg`,
     // additional '/your-image-path/carousel-4.jpg',
     // additional '/your-image-path/carousel-5.jpg'
   ];

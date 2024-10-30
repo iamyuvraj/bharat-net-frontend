@@ -11,7 +11,7 @@ const Dashboard = () => {
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <img
-              src="/other-assets/bn-logo.png"
+              src={`${process.env.PUBLIC_URL}/other-assets/bn-logo.png`}
               className="h-12"
               alt="Bharat Net Logo"
             />

@@ -6,6 +6,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import Modal from "./Modal";
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,11 +46,11 @@ const Landing = () => {
       <nav className="bg-gray-800 border-gray-200 dark:bg-gray-900">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
           <a
-            href="#"
+            href=" "
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <img
-              src="/other-assets/bn-logo.png"
+              src={`${process.env.PUBLIC_URL}/other-assets/bn-logo.png`}
               className="h-12"
               alt="Bharat Net Logo"
             />
@@ -68,18 +69,18 @@ const Landing = () => {
               <span>Apply for New Connection</span>
             </button>
 
-            <a href="/login">
+            <Link to="/login">
               <button className="flex items-center space-x-2 text-sm bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-500 transition duration-300">
                 <LoginIcon className="w-5 h-5 text-white" />
                 <span>Log In</span>
               </button>
-            </a>
-            <a href="/register">
+            </Link>
+            <Link to="/register">
               <button className="flex items-center space-x-2 text-sm bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-400">
                 <AppRegistrationIcon className="w-5 h-5 text-white" />
                 <span>Register</span>
               </button>
-            </a>
+            </Link>
 
             <a href="#">
               <button className="flex items-center space-x-2 text-sm bg-gray-700 text-white px-3 py-2 rounded-lg hover:bg-gray-600">
@@ -93,10 +94,12 @@ const Landing = () => {
 
       {/* Modal for New Connection Form */}
       <Modal isOpen={isModalOpen} onClose={toggleModal}>
-        <div className="bg-gray-700 p-6 rounded-lg shadow-lg"> {/* edit the background and blur effect later - cover whole page blur */}
+        <div className="bg-gray-700 p-6 rounded-lg shadow-lg">
+          {" "}
+          {/* edit the background and blur effect later - cover whole page blur */}
           <div className="flex justify-center mb-6">
             <img
-              src="/other-assets/bn-logo.png"
+              src={`${process.env.PUBLIC_URL}/other-assets/bn-logo.png`}
               alt="Bharat Net"
               className="h-20"
             />
@@ -104,7 +107,6 @@ const Landing = () => {
           <h2 className="text-center text-white text-3xl font-semibold mb-6">
             Apply for New Connection
           </h2>
-
           {/* Apply Form */}
           <form
             className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4"
@@ -299,7 +301,7 @@ const Landing = () => {
               </ul>
               <a
                 href="/plans"
-                className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-900"
+                className="mt-auto text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-900"
               >
                 Get Started
               </a>
@@ -363,7 +365,7 @@ const Landing = () => {
 
               <a
                 href="/plans"
-                className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-900"
+                className="mt-auto text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-900"
               >
                 Get Started
               </a>
@@ -455,11 +457,29 @@ const Landing = () => {
       <section className="py-12 bg-gray-100 text-center">
         <h2 className="text-3xl font-semibold mb-8">How It Works</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <div>
-            <h3 className="text-xl font-semibold">Step 1</h3>
-            <p className="text-gray-700">Sign up for a Bharat Net account.</p>
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold">Step 1: Sign Up</h3>
+            <p className="text-gray-700">
+              Register for a Bharat Net account by filling out the necessary
+              information.
+            </p>
           </div>
-          {/* repeat for other steps */}
+
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold">Step 2: Log In</h3>
+            <p className="text-gray-700">
+              Access your account by logging in with your credentials.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold">
+              Step 3: Fill Application Form
+            </h3>
+            <p className="text-gray-700">
+              Complete the new connection application form with your details.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -469,11 +489,11 @@ const Landing = () => {
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
           <div class="sm:flex sm:items-center sm:justify-between">
             <a
-              href="https://example.com"
+              href=" "
               class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
             >
               <img
-                src="/other-assets/bn-logo.png"
+                src={`${process.env.PUBLIC_URL}/other-assets/bn-logo.png`}
                 class="h-8"
                 alt="Bharat Net Logo"
               />
@@ -507,7 +527,7 @@ const Landing = () => {
           <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
           <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2024{" "}
-            <a href="https://example.com/" class="hover:underline">
+            <a href=" " class="hover:underline">
               Bharat Net™
             </a>
             . All Rights Reserved.

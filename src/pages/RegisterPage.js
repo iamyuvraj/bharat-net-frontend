@@ -50,7 +50,7 @@ const Register = () => {
     <div
       className="relative flex items-center justify-end h-screen bg-cover bg-center"
       style={{
-        backgroundImage: `url('/bg-assets/bg.jpg')`,
+        backgroundImage: `url(${process.env.PUBLIC_URL}/bg-assets/bg.jpg)`,
       }}
     >
       {/* overlay to darken the background image */}
@@ -61,8 +61,8 @@ const Register = () => {
         <div className="flex justify-center mb-4">
           {/* logo */}
           <img
-            src="/other-assets/bn-logo.png"
-            alt="Bharat Net"
+            src={`${process.env.PUBLIC_URL}/other-assets/bn-logo.png`}
+            alt="Bharat Net Logo"
             className="h-20"
           />
         </div>

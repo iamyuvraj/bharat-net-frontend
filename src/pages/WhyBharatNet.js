@@ -8,7 +8,7 @@ function WhyBharatNet() {
           {/* Image on the left */}
           <div className="flex-1">
             <img
-              src="/other-assets/test-assets/(1).jpg" // Replace with your image path
+              src={`${process.env.PUBLIC_URL}/other-assets/test-assets/(1).jpg`} // replace with new image path
               alt="Why Bharat Net"
               className="w-full h-auto rounded-lg"
             />
