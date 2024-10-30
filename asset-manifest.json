@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bharat-net-frontend/static/css/main.d3a2fb9d.css",
-    "main.js": "/bharat-net-frontend/static/js/main.f2271928.js",
+    "main.css": "/bharat-net-frontend/static/css/main.4fcff99e.css",
+    "main.js": "/bharat-net-frontend/static/js/main.b6138a92.js",
     "static/js/453.18c73903.chunk.js": "/bharat-net-frontend/static/js/453.18c73903.chunk.js",
     "index.html": "/bharat-net-frontend/index.html",
-    "main.d3a2fb9d.css.map": "/bharat-net-frontend/static/css/main.d3a2fb9d.css.map",
-    "main.f2271928.js.map": "/bharat-net-frontend/static/js/main.f2271928.js.map",
+    "main.4fcff99e.css.map": "/bharat-net-frontend/static/css/main.4fcff99e.css.map",
+    "main.b6138a92.js.map": "/bharat-net-frontend/static/js/main.b6138a92.js.map",
     "453.18c73903.chunk.js.map": "/bharat-net-frontend/static/js/453.18c73903.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d3a2fb9d.css",
-    "static/js/main.f2271928.js"
+    "static/css/main.4fcff99e.css",
+    "static/js/main.b6138a92.js"
   ]
 }
