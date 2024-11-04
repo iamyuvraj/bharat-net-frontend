@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Carousel from "./Carousel";
-import WhyBharatNet from "./WhyBharatNet";
+import Carousel from "../components/Carousel";
+import WhyBharatNet from "../components/WhyBharatNet";
 import RouterIcon from '@mui/icons-material/Router';
 import LoginIcon from '@mui/icons-material/Login';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import Modal from "./Modal";
+import Modal from "../components/Modal";
 import { Link } from 'react-router-dom';
 
 const Landing = () => {
@@ -62,7 +62,7 @@ const Landing = () => {
           <div className="flex items-center space-x-4 rtl:space-x-reverse">
             <button
               type="button"
-              className="px-3 py-2 text-sm font-medium text-white bg-teal-600 hover:bg-green-600 focus:ring-1 focus:outline-none focus:ring-green-300 rounded-lg transition duration-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-700 ml-4 flex items-center space-x-2"
+              className="px-3 py-2 text-sm font-medium text-white bg-teal-600 hover:bg-green-500 focus:ring-1 focus:outline-none focus:ring-green-300 rounded-lg transition duration-300 ml-4 flex items-center space-x-2"
               onClick={toggleModal} // Open the modal
             >
               <RouterIcon className="w-5 h-5 text-white" />
@@ -246,7 +246,8 @@ const Landing = () => {
           </div>
           <div className="grid gap-8 lg:grid-cols-3 sm:gap-6 xl:gap-10">
             {/* pricing card 1 */}
-            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow transition-transform duration-200 ease-in-out transform 
+hover:scale-105 hover:shadow-lg dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
               <h3 className="mb-4 text-2xl font-semibold">Silver</h3>
               <p className="font-light text-gray-800 dark:text-gray-200">
                 ₹499 /month
@@ -300,14 +301,15 @@ const Landing = () => {
                 </li>
               </ul>
               <a
-                href="/plans"
+                href=" "
                 className="mt-auto text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-900"
               >
                 Get Started
               </a>
             </div>
             {/* pricing card 2 */}
-            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow transition-transform duration-200 ease-in-out transform 
+hover:scale-105 hover:shadow-lg dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
               <h3 className="mb-4 text-2xl font-semibold dark:text-yellow-500">
                 Gold
               </h3>
@@ -364,14 +366,15 @@ const Landing = () => {
               </ul>
 
               <a
-                href="/plans"
+                href=" "
                 className="mt-auto text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-900"
               >
                 Get Started
               </a>
             </div>
             {/* pricing card 3 */}
-            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow transition-transform duration-200 ease-in-out transform 
+hover:scale-105 hover:shadow-lg dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
               <h3 className="mb-4 text-2xl font-semibold dark:text-pink-500">
                 Diamond
               </h3>
@@ -441,7 +444,7 @@ const Landing = () => {
                 </li>
               </ul>
               <a
-                href="/plans"
+                href=" "
                 className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-900"
               >
                 Get Started
