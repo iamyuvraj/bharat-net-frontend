@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Login = () => {
-  const [mobileNumber, setMobileNumber] = useState('');
+  const [mobileNumber, setMobileNumber] = useState("");
   const [isValid, setIsValid] = useState(false);
 
   // handle input change
@@ -19,30 +19,35 @@ const Login = () => {
 
   return (
     <div
-      className="relative flex items-center justify-end h-screen bg-cover bg-center"
-      style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/bg-assets/bg.jpg)` }}
+      className="relative flex items-center justify-center h-screen bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/bg-assets/bg.jpg)`,
+      }}
     >
       {/* overlay to darken the background image */}
       <div className="absolute inset-0 bg-black opacity-60"></div>
 
       {/* login form container */}
-      <div className="relative z-10 bg-white bg-opacity-10 backdrop-filter backdrop-blur-md rounded-lg shadow-lg p-8 w-full max-w-md mr-20">
+      <div className="relative z-10 bg-white bg-opacity-20 backdrop-filter backdrop-blur-md rounded-lg shadow-lg p-6 sm:p-8 w-full max-w-sm sm:max-w-md">
         <div className="flex justify-center mb-4">
           {/* logo */}
           <img
             src={`${process.env.PUBLIC_URL}/other-assets/bn-logo.png`}
             alt="Bharat Net Logo"
-            className="h-20"
+            className="h-16 sm:h-20"
           />
         </div>
 
-        <h2 className="text-center text-white text-3xl font-semibold mb-4">
+        <h2 className="text-center text-white text-2xl sm:text-3xl font-semibold mb-4">
           Log In
         </h2>
 
         {/* login form */}
         <form>
-          <label htmlFor="mobileNumber" className="block text-white mb-2">
+          <label
+            htmlFor="mobileNumber"
+            className="block text-white mb-2 text-sm sm:text-base"
+          >
             Registered Mobile Number
           </label>
           <input
@@ -50,13 +55,15 @@ const Login = () => {
             id="mobileNumber"
             placeholder="Enter 10-digit Mobile No."
             className="w-full p-3 rounded-md mb-4 text-gray-900"
+            inputMode="numeric"
+            required
             value={mobileNumber}
             onChange={handleInputChange}
             maxLength={10} // restrict the input to 10 characters
           />
           <p
             id="helper-text-explanation"
-            className="mt-2 mb-4 text-sm text-gray-400"
+            className="mt-2 mb-4 text-xs sm:text-sm text-gray-400"
           >
             We will send you an SMS with a verification code.
           </p>

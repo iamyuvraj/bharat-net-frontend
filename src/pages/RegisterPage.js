@@ -48,7 +48,7 @@ const Register = () => {
 
   return (
     <div
-      className="relative flex items-center justify-end h-screen bg-cover bg-center"
+      className="relative flex items-center justify-center h-screen bg-cover bg-center"
       style={{
         backgroundImage: `url(${process.env.PUBLIC_URL}/bg-assets/bg.jpg)`,
       }}
@@ -57,25 +57,25 @@ const Register = () => {
       <div className="absolute inset-0 bg-black opacity-60"></div>
 
       {/* register form container */}
-      <div className="relative z-10 bg-white bg-opacity-10 backdrop-filter backdrop-blur-md rounded-lg shadow-lg p-8 w-full max-w-md mr-20">
+      <div className="relative z-10 bg-white bg-opacity-20 backdrop-filter backdrop-blur-md rounded-lg shadow-lg p-6 sm:p-8 w-full max-w-md">
         <div className="flex justify-center mb-4">
           {/* logo */}
           <img
             src={`${process.env.PUBLIC_URL}/other-assets/bn-logo.png`}
             alt="Bharat Net Logo"
-            className="h-20"
+            className="h-16 sm:h-20"
           />
         </div>
 
-        <h2 className="text-center text-white text-3xl font-semibold mb-4">
+        <h2 className="text-center text-white text-2xl sm:text-3xl font-semibold mb-4">
           {showOtp ? "Verify Mobile Number" : "User Registration"}
         </h2>
 
         {/* conditional rendering of registration form or OTP input */}
         {!showOtp ? (
           <form onSubmit={handleRegister}>
-            <div className="flex mb-4">
-              <div className="mr-2 w-full">
+            <div className="flex flex-col sm:flex-row mb-4">
+              <div className="sm:mr-2 w-full mb-4 sm:mb-0">
                 <label className="block text-white mb-2">First Name</label>
                 <input
                   type="text"
@@ -84,7 +84,7 @@ const Register = () => {
                   required
                 />
               </div>
-              <div className="ml-2 w-full">
+              <div className="sm:ml-2 w-full">
                 <label className="block text-white mb-2">Last Name</label>
                 <input
                   type="text"
@@ -165,7 +165,7 @@ const Register = () => {
                 </h3>
               </div>
               <div className="px-3 py-2">
-                <p>
+                <p className="text-sm text-gray-500 mt-4 mb-4 text-justify leading-relaxed">
                   By using our services, you agree to comply with and be bound
                   by these terms and conditions. If you do not agree with any
                   part of these terms, please refrain from using our services.

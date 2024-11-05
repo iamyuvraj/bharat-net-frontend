@@ -6,8 +6,6 @@ const Carousel = () => {
     `${process.env.PUBLIC_URL}/other-assets/carousel-assets/slide-one.jpg`,
     `${process.env.PUBLIC_URL}/other-assets/carousel-assets/slide-two.jpg`,
     `${process.env.PUBLIC_URL}/other-assets/carousel-assets/slide-three.jpg`,
-    // additional '/your-image-path/carousel-4.jpg',
-    // additional '/your-image-path/carousel-5.jpg'
   ];
 
   const nextSlide = () => {
@@ -18,7 +16,6 @@ const Carousel = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
 
-  // auto slide every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
@@ -28,17 +25,15 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div className="relative w-full" data-carousel="slide">
-      {/* carousel wrapper */}
-      <div className="relative w-full" data-carousel="slide">
-        {" "}
-        {/* adjust `mt-16` based on navbar height */}
-        <div className="relative h-[700px] overflow-hidden md:h-[600px]">
+    <div className="relative w-full m-0 h-screen" data-carousel="slide">
+      {/* Carousel wrapper */}
+      <div className="relative w-full h-full" data-carousel="slide">
+        <div className="relative h-full overflow-hidden">
           {images.map((src, index) => (
             <div
               key={index}
               className={`absolute block w-full h-full transition-opacity duration-700 ease-in-out ${
-                currentIndex === index ? "opacity-100" : "opacity-0"
+                currentIndex === index ? 'opacity-100' : 'opacity-0'
               }`}
               aria-hidden={currentIndex !== index}
             >
@@ -50,17 +45,16 @@ const Carousel = () => {
             </div>
           ))}
         </div>
-        {/* other carousel elements */}
       </div>
 
-      {/* slider indicators */}
+      {/* Slider indicators */}
       <div className="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
         {images.map((_, index) => (
           <button
             key={index}
             type="button"
             className={`w-3 h-3 rounded-full ${
-              currentIndex === index ? "bg-blue-600" : "bg-gray-300"
+              currentIndex === index ? 'bg-blue-600' : 'bg-gray-300'
             }`}
             aria-current={currentIndex === index}
             aria-label={`Slide ${index + 1}`}
@@ -69,13 +63,15 @@ const Carousel = () => {
         ))}
       </div>
 
-      {/* slider controls */}
+      {/* Slider controls */}
+      {/* Left Arrow */}
       <button
         type="button"
-        className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+        className="absolute top-1/2 left-5 z-40 flex items-center justify-center w-10 h-10 cursor-pointer group focus:outline-none"
         onClick={prevSlide}
+        style={{ transform: 'translateY(-50%)' }}
       >
-        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-2 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
           <svg
             className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
             aria-hidden="true"
@@ -94,12 +90,15 @@ const Carousel = () => {
           <span className="sr-only">Previous</span>
         </span>
       </button>
+
+      {/* Right Arrow */}
       <button
         type="button"
-        className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+        className="absolute top-1/2 right-5 z-40 flex items-center justify-center w-10 h-10 cursor-pointer group focus:outline-none"
         onClick={nextSlide}
+        style={{ transform: 'translateY(-50%)' }}
       >
-        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-2 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
           <svg
             className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
             aria-hidden="true"
