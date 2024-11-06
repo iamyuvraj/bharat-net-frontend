@@ -4,9 +4,9 @@ function WhyBharatNet() {
     return (
       <section className="py-12 bg-white text-center">
         <h2 className="text-3xl font-semibold mb-8">Why Bharat Net?</h2>
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 px-4">
           {/* Image on the left */}
-          <div className="flex-1">
+          <div className="flex-1 mb-8 md:mb-0">
             <img
               src={`${process.env.PUBLIC_URL}/other-assets/test-assets/(1).jpg`} // replace with new image path
               alt="Why Bharat Net"

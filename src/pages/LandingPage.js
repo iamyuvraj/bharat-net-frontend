@@ -19,10 +19,13 @@ const Landing = () => {
     locality: "",
     PINCode: "",
   });
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+
+  const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -59,8 +62,33 @@ const Landing = () => {
             </span>
           </a>
 
+          {/* Hamburger Icon for Mobile */}
+          <button
+            className="lg:hidden text-white"
+            onClick={toggleMenu}
+            aria-label="Toggle navigation"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+
           {/* Navbar Buttons */}
-          <div className="flex flex-wrap items-center space-x-4 rtl:space-x-reverse mt-4 md:mt-0">
+          <div
+            className={`${
+              isMobileMenuOpen ? "block" : "hidden"
+            } lg:flex lg:flex-wrap lg:items-center space-x-4 mt-4 lg:mt-0 lg:flex-row`}>
             <button
               type="button"
               className="px-3 py-2 text-sm font-medium text-white bg-teal-600 hover:bg-green-500 focus:ring-1 focus:outline-none focus:ring-green-300 rounded-lg transition duration-300 ml-4 flex items-center space-x-2"
